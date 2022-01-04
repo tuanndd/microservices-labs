@@ -1,0 +1,3 @@
+AMQP_URI: 'amqps://username:password@server/vhost'
+rpc_exchange: 'nameko-rpc'
+max_workers: 10

@@ -1,0 +1,8 @@
+flask
+opentelemetry-sdk
+opentelemetry-instrumentation
+opentelemetry-instrumentation-flask
+opentelemetry-exporter-jaeger
+opentelemetry-instrumentation-requests
+opentelemetry-instrumentation-mysql
+mysql-connector

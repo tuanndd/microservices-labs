@@ -1,0 +1,42 @@
+{
+  "name": "jaeger-tracing-nodejs-service",
+  "version": "1.0.0",
+  "description": "This is a NodeJS project to demo Jaeger Distributed Tracing",
+  "scripts": {
+    "start": "./node_modules/.bin/nodemon -r ./tracer.js main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisJBurns/jaeger-tracing-nodejs-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChrisJBurns/jaeger-tracing-nodejs-service/issues"
+  },
+  "homepage": "https://github.com/ChrisJBurns/jaeger-tracing-nodejs-service#readme",
+  "dependencies": {
+    "@opentelemetry/core": "^0.10.2",
+    "@opentelemetry/exporter-jaeger": "^0.5.2",
+    "@opentelemetry/node": "^0.5.2",
+    "@opentelemetry/plugin-http": "^0.5.0",
+    "@opentelemetry/tracing": "^0.5.2",
+    "axios": "^0.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "nodemon": "^2.0.4"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "rules": {}
+  }
+}

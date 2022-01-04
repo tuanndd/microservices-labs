@@ -1,0 +1,5 @@
+server.port: 8090
+
+spring.datasource.url: jdbc:postgresql://localhost:5432/salary-grade
+spring.datasource.username: postgres
+spring.datasource.password: password

@@ -1,0 +1,19 @@
+{
+    "customer_id": "1",
+    "restaurant_id": "2",
+    "amount": 200,
+    "order_items": [
+      {
+        "code": "1",
+        "name": "name1",
+        "unit_price": 5,
+        "quantity": 4
+      },
+      {
+        "code": "2",
+        "name": "name2",
+        "unit_price": 10,
+        "quantity": 8
+      }
+    ]
+  }

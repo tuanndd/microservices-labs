@@ -1,0 +1,5 @@
+app:
+  env: "development"
+  consumerbroker: "first.example.com:9092"
+  producerbroker: "second.example.com:9092"
+  #linetoken: "sdjfnasklJBS8asdnas83rq2mSJKnadfdmGFVJGSHBd3845ulzdmnfvsd"
