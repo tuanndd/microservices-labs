@@ -7,21 +7,24 @@ Thử nghiệm triển khai WordPress bằng docker-compose và Kubernetes
 cd wp-compose
 docker-compose
 
-curl http://[ip-address]:8000
+curl http://vagrant-ip:8000
 ```
 
 ### Deploy WordPress bằng Kubernetes
 ```bash
 cd wp-k8s
 
-kubectl -- apply -f mysql.yml
-kubectl -- apply -f wordpress.yml
+minikube start --extra-config=kubeadm.ignore-preflight-errors=NumCPU --force --cpus 1
+
+kubectl apply -f mysql.yml
+kubectl apply -f wordpress.yml
 
 kubectl get pods
-kubectl -- delete -f wordpress.yml
-kubectl -- delete -f mysql.yml
 
 curl http://[ip-address]:30000
+
+kubectl delete -f wordpress.yml
+kubectl delete -f mysql.yml
 ```
 
 # Tài liệu tham khảo

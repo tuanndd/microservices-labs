@@ -6,11 +6,8 @@
 
 ```bash
 # install modules
-go get -v github.com/gin-gonic/gin
-
+go mod tidy
 go get -v github.com/swaggo/swag/cmd/swag
-go get -v github.com/swaggo/gin-swagger
-go get -v github.com/swaggo/files
 
 # generate swagger's docs
 swag init
@@ -19,7 +16,7 @@ swag init
 go run main.go
 
 # test api
-http://localhost:8080/swagger/index.html
+http://vagrant-ip:8080/swagger/index.html
 
 ```
 # Tài liệu tham khảo

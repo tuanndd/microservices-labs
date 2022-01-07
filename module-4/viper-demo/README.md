@@ -4,6 +4,8 @@
 # Hướng dẫn
 ### Đọc config từ local file
 ```bash
+go mod tidy
+
 go run local.go
 ```
 
@@ -11,10 +13,14 @@ go run local.go
 ```bash
 # chuẩn bị
 # start consul
-consul agent -dev
+consul agent -dev -client 0.0.0.0
 
 # tạo KV trên consul để lưu config
-http://localhost:8500/ui/dc1/kv/create
+http://vagrant-ip:8500/ui/dc1/kv/create
+
+key=config
+
+value=
 {
   "port": 10666,
   "mysql":{

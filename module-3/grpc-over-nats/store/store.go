@@ -17,11 +17,11 @@ func init() {
 
 	var err error
 	// Connect den server MongoDB
-	mgoClient, err = mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb+srv://username:password@servername/dbname?retryWrites=true&w=majority"))
+	mgoClient, err = mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://localhost"))
 
 	if err != nil {
 		log.Fatalf("[createDbSession]: %s\n", err)
 	}
 
-	mgoDb = mgoClient.Database("test")
+	mgoDb = mgoClient.Database("local")
 }

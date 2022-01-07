@@ -2,17 +2,26 @@
 Thử nghiệm gọi GRPC qua NATS
 
 ![](figure-1.png)
+
+| Service | Subscribe vào subject | Xử lý nội bộ | Push message đến subject |
+| - | - | - | - |
+| discovery_service | Discovery.OrderService | return address(order_service) to client | |
+| order_service | | receive client request, sql_insert(order), sql_select(orders) | Order.OrderCreated |
+| worker_* | Order.OrderCreated | sql_insert(events) | |
+| eventstore_service | Order.> | sql_insert(events) | |
+
 # Hướng dẫn
 ### Chuẩn bị
 ```bash
-# start nats server
-nats-server -V
-
-# start mongodb server bằng docker hoặc https://cloud.mongodb.com
-# edit store/store.go : ApplyURI("mongodb+srv://...
+# start nats, mongodb servers
+docker run --rm -it -p 4222:4222 nats
+docker run --rm -it -p 27017:27017 mongo:4.2
 
 # compile proto
 protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative order/order.proto
+
+go mod tidy
+
 ```
 
 ### Start services

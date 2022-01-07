@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gora/config"
+	"demo/config"
 	"log"
 	"os"
 	"strings"

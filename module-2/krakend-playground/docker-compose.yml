@@ -1,0 +1,56 @@
+version: "3"
+services:
+  grafana:
+    build:
+      dockerfile: Dockerfile
+      context: ./grafana
+    ports:
+      - "3003:3000"
+  influxdb:
+    image: influxdb:1.8
+    environment:
+      - "INFLUXDB_DB=krakend"
+      - "INFLUXDB_USER=krakend-dev"
+      - "INFLUXDB_USER_PASSWORD=pas5w0rd"
+      - "INFLUXDB_ADMIN_USER=admin"
+      - "INFLUXDB_ADMIN_PASSWORD=supersecretpassword"
+    ports:
+      - "8086:8086"
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "16686:16686"
+      - "14268:14268"
+  fake_api:
+    image: jaxgeller/lwan
+    volumes:
+      - ./data:/lwan/wwwroot
+    ports:
+      - "8000:8080"
+  web:
+    build:
+      context: ./web
+    ports:
+      - "3000:3000"
+  kraken_designer:
+    image: devopsfaith/krakendesigner:latest
+    ports:
+      - 8787:80
+  krakend_ce:
+    image: devopsfaith/krakend:1.4.1
+    volumes:
+      - ./krakend:/etc/krakend
+    ports:
+      - "1234:1234"
+      - "8080:8080"
+      - "8090:8090"
+    depends_on:
+      - fake_api
+      - jaeger
+  jwt_revoke:
+    build:
+      context: ./jwt-revoker
+    ports:
+      - "9000:8080"
+    depends_on:
+      - krakend_ce

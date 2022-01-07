@@ -1,3 +1,3 @@
 package config
 
-var RABBITMQ_URL = "amqps://username:password@server/vhost"
+var RABBITMQ_URL = "amqp://localhost"

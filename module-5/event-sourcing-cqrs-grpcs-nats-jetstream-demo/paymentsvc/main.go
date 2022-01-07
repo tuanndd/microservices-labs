@@ -48,7 +48,7 @@ func main() {
 
 		msgs, _ := sub.Fetch(1, nats.Context(ctx)) // batch_size = 1 messages
 		for _, msg := range msgs {
-			log.Println("----------  before ACK")
+			// log.Println("----------  before ACK")
 			msg.Ack()
 
 			order := pb.OrderCreateCommand{}

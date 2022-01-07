@@ -29,14 +29,14 @@ func main() {
 	natsConnection, err := nats.Connect(nats.DefaultURL)
 	log.Println("Connected to " + nats.DefaultURL)
 
-	log.Printf("CONNECT> %v ---------- %v", natsConnection, err)
+	// log.Printf("CONNECT> %v ---------- %v", natsConnection, err)
 
 	natsConnection.Subscribe("Discovery.OrderService", func(msg *nats.Msg) {
 		orderServiceDiscovery := pb.ServiceDiscovery{
 			OrderServiceUri: orderServiceUri,
 		}
 		data, err := proto.Marshal(&orderServiceDiscovery)
-		log.Printf("MSG: %v ---------- %v", data, err)
+		// log.Printf("MSG: %v ---------- %v", data, err)
 
 		if err == nil {
 			natsConnection.Publish(msg.Reply, data)

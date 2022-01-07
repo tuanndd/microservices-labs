@@ -3,13 +3,18 @@ Thử nghiệm RabbitMQ
 
 # Hướng dẫn
 ```bash
-# Yêu cầu: run RabbitMQ server bằng docker hoặc https://cloudamqp.com
+# chuẩn bị
+docker run --rm -it -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+
+go mod tidy
 ```
 
 ### Tutorial 1: Hello World
 ![](figure-1.png)
 - Gởi message có routing_key = queue_name
 ```bash
+cd tutorial-1
+
 go run send.go
 go run receive.go
 ```
@@ -21,6 +26,8 @@ go run receive.go
 - Message được roudrobin đến các consumer
 
 ```bash
+cd tutorial-2
+
 go run worker.go
 go run worker.go
 
@@ -38,7 +45,9 @@ go run new_task.go d..........
 - mỗi consumer nhận được 1 bản copy của message
 
 ```bash
-go run receive_logs.go > logs_from_rabbit.log
+cd tutorial-3
+
+go run receive_logs.go
 go run receive_logs.go
 
 go run emit_log.go
@@ -52,20 +61,13 @@ go run emit_log.go
 - mỗi consumer nhận 1 bản copy của message
 
 ```bash
-go run receive_logs_direct.go warning error > logs_from_rabbit.log
+cd tutorial-4
+go run receive_logs_direct.go warning error
 go run receive_logs_direct.go info warning error
-# => [*] Waiting for logs. To exit press CTRL+C
 
 go run emit_log_direct.go error "Run. Run. Or it will explode."
-# => [x] Sent 'error':'Run. Run. Or it will explode.'
+go run emit_log_direct.go info "App running."
 ```
-
-### Tutorial 4 (nâng cao): Routing + roundrobin
-- tạo exchange co type=direct
-- producer gởi message den exchange có routing_key=A
-- các consumer ***dùng chung 1 queue_name***, binding đến exchange với routing_key=A
-- message được round-robin đến các consumer
-
 ### Tutorial 5: Topics
 ![](figure-5.png)
 - tạo exchange có type=topic
@@ -73,12 +75,14 @@ go run emit_log_direct.go error "Run. Run. Or it will explode."
 - consumer lần lượt bind queue đến exchange với exchange routing_key=a.* và routing_key=b.*  (routing_key="#" nghĩa là nhận tất cả message)
 
 ```bash
+cd tutorial-5
+
 go run receive_logs_topic.go "#"
 go run receive_logs_topic.go "kern.*"
 go run receive_logs_topic.go "*.critical"
 
-go run receive_logs_topic.go "kern.*" "*.critical"
 go run emit_log_topic.go "kern.critical" "A critical kernel error"
+go run emit_log_topic.go "app.critical" "A critical app error"
 ```
 
 ### Tutorial 6: RPC
@@ -87,6 +91,8 @@ go run emit_log_topic.go "kern.critical" "A critical kernel error"
 - consumer nhận message trên request_queue, xử lý và gởi message chứa kết quả đến reply_queue voi correlation_id=x
 
 ```bash
+cd tutorial-6
+
 go run rpc_server.go
 # => [x] Awaiting RPC requests
 

@@ -5,11 +5,13 @@ Thử nghiệm dùng consul làm service discovery và centralize config
 ```bash
 # chuẩn bị
 # run consul agent
-consul agent -dev
+consul agent -dev -client 0.0.0.0
 
 # tạo KV để lưu config cho app
-http://localhost:8500/ui/dc1/kv/create
+http://vagrant-ip:8500/ui/dc1/kv/create
+
 key=product-configuration
+
 value=
 {
     "categories": [
@@ -20,16 +22,18 @@ value=
     ]
 }
 
+go mod tidy
+
 # run services
-go run product-service\main.go
-go run user-service\main.go
+go run product-service/main.go
+go run user-service/main.go
 
 # xem thông tin services
-http://localhost:8500/ui/dc1/services
+http://vagrant-ip:8500/ui/dc1/services
 
 # test services
-http://localhost:8100/product-configuration
-http://localhost:8080/user-products (sẽ tìm địa chỉ của product-service từ consul và gởi request đến http://localhost:8100/products)
+http://vagrant-ip:8100/product-configuration
+http://vagrant-ip:8080/user-products (sẽ tìm địa chỉ của product-service từ consul và gởi request đến http://vagrant-ip:8100/products)
 ```
 
 # Tài liệu tham khảo

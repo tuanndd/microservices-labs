@@ -5,10 +5,11 @@ Thử nghiệm dùng etcd làm service discovery
 ```bash
 # chuẩn bị
 # run etcd server
+minikube stop
+etcd
 
-go clean -modcache
-go get go.etcd.io/etcd/clientv3
-go get google.golang.org/grpc@v1.26.0
+
+go mod tidy
 
 # test
 go run discovery.go

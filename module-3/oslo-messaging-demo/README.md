@@ -4,35 +4,36 @@ Thử nghiệm tạo microservices bằng oslo.messaging
 # Hướng dẫn 
 ```bash
 # chuẩn bị
-pip install oslo.messaging
+docker run --rm -it -p 5672:5672 -p 15672:15672 rabbitmq:3-management
 
-# edit config/oslo.conf
+sudo pip3 install oslo.messaging
+
 ```
 
 ### Tutorial 1: Basic
 https://github.com/kgiusti/oslo-messaging-clients
 
 ```bash
-python ./tutorial-1/rpc-server.py --config-file ./config/oslo.conf --name MyServer
-python ./tutorial-1/rpc-client.py --config-file ./config/oslo.conf --method echo --kwargs "arg1=value1 arg2=value2"
+python3 ./tutorial-1/rpc-server.py --config-file ./config/oslo.conf --name MyServer
+python3 ./tutorial-1/rpc-client.py --config-file ./config/oslo.conf --method echo --kwargs "arg1=value1 arg2=value2"
 ```
 
 ### Tutorial 2: Advanced
 http://fosshelp.blogspot.com/2015/02/openstack-oslo-messaging-rpc-api.html
 ```bash
 # start các server
-python ./tutorial-2/server.py --config-file ./config/oslo.conf --name a
-python ./tutorial-2/server.py --config-file ./config/oslo.conf --name b
+python3 ./tutorial-2/server.py --config-file ./config/oslo.conf --name a
+python3 ./tutorial-2/server.py --config-file ./config/oslo.conf --name b
 
 # test gởi request đến một server cụ thể
-python ./tutorial-2/client.py --config-file ./config/oslo.conf --server a
-python ./tutorial-2/client.py --config-file ./config/oslo.conf --server b
+python3 ./tutorial-2/client.py --config-file ./config/oslo.conf --server a
+python3 ./tutorial-2/client.py --config-file ./config/oslo.conf --server b
 
 # test gởi request đến một trong các server để xử lý
-python ./tutorial-2/client.py --config-file ./config/oslo.conf
+python3 ./tutorial-2/client.py --config-file ./config/oslo.conf
 
 # test gởi request đến tất cả server
-python ./tutorial-2/client.py --config-file ./config/oslo.conf --fanout
+python3 ./tutorial-2/client.py --config-file ./config/oslo.conf --fanout
 ```
 
 # Phân tích cách dùng olso.messaging trong Openstack

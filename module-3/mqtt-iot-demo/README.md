@@ -15,14 +15,18 @@ Lấy trạng thái của các device | server | home/+/info, home/+/stat | |
 #### 
 # Hướng dẫn
 ### Chuẩn bị
-Run MQTT server bằng docker (https://mosquitto.org/download/) hoặc cloud (https://test.mosquitto.org/)
-
+```bash
+# run mqtt server
+docker run --rm -it -p 1883:1883 -v `pwd`/mosquitto.conf:/mosquitto/config/mosquitto.conf eclipse-mosquitto
+```
 ### Start services
 ```bash
+go mod tidy
+
 go run server.go
 
-go run client light
-go run client fan
+go run client.go light
+go run client.go fan
 ```
 
 ### Test điều khiển thiết bị
@@ -31,27 +35,27 @@ go run client fan
 #  download http client (Insomnia, Postman app, Thunder client)
 
 # lấy thông tin của các thiết bị
-GET http://localhost:8080/devices
+GET http://vagrant-ip:8080/devices
 
-GET http://localhost:8080/info/light
-GET http://localhost:8080/info/fan
+GET http://vagrant-ip:8080/info/light
+GET http://vagrant-ip:8080/info/fan
 
-GET http://localhost:8080/stat/light
-GET http://localhost:8080/stat/fan
+GET http://vagrant-ip:8080/stat/light
+GET http://vagrant-ip:8080/stat/fan
 
 # gởi lệnh đến 1 thiết bị
-POST http://localhost:8080/cmd/light
+POST http://vagrant-ip:8080/cmd/light
 {
 	"id": "1a",
 	"content":"power_on"
 }
 
-GET http://localhost:8080/ret/light
+GET http://vagrant-ip:8080/ret/light
 
 # gởi lệnh đến tất cả thiết bị
-http://localhost:8080/broadcast
+http://vagrant-ip:8080/broadcast
 {
-	"alert":"attacked"
+	"alert":"fire"
 }
 ```
 

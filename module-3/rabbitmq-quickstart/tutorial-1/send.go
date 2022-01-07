@@ -4,6 +4,8 @@ import (
 	"log"
 
 	"github.com/streadway/amqp"
+
+	"demo/config"
 )
 
 // print loi
@@ -14,7 +16,7 @@ func failOnError(err error, msg string) {
 }
 
 func main() {
-	conn, err := amqp.Dial("amqps://username:password@server/vhost")
+	conn, err := amqp.Dial(config.RABBITMQ_URL)
 	failOnError(err, "Loi ket noi RabbitMQ")
 	defer conn.Close()
 

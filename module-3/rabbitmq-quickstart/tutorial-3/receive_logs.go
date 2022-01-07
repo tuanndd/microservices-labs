@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gora/config"
+	"config/config"
 	"log"
 
 	"github.com/streadway/amqp"

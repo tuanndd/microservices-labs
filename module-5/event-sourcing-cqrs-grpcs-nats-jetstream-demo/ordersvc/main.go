@@ -72,8 +72,8 @@ func (h orderHandler) createOrder(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	log.Printf("---------- INPUT: r.body: %+v\n", r.Body)
-	log.Printf("---------- OUTPUT: order: %+v\n", order)
+	// log.Printf("---------- INPUT: r.body: %+v\n", r.Body)
+	// log.Printf("---------- OUTPUT: order: %+v\n", order)
 
 	aggregateID := uuid.NewV4().String()
 	order.OrderId = aggregateID
