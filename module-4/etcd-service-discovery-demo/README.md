@@ -5,7 +5,6 @@ Thử nghiệm dùng etcd làm service discovery
 ```bash
 # chuẩn bị
 # run etcd server
-minikube stop
 etcd
 
 

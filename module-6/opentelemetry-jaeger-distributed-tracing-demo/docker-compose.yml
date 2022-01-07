@@ -1,0 +1,119 @@
+version: "3.8"
+
+services:
+  employee-mongo:
+    container_name: employee-mongo
+    image: mongo:4.2
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGODB_USER: user
+      MONGODB_PASS: user
+    ports:
+      - 27017:27017
+
+  jaeger-tracing-go-service:
+    container_name: jaeger-tracing-go-service
+    build: 
+      context: "./jaeger-tracing-go-service"
+    environment:
+        MONGODB_URI: mongodb://admin:admin@employee-mongo:27017/admin
+        DATABASE_NAME: employees
+        OTEL_EXPORTER: jaeger
+        OTEL_JAEGER_ENDPOINT: http://jaeger-tracing:14268
+        OTEL_JAEGER_SERVICE_NAME: go-service
+    ports: 
+      - "8091:8091"
+
+  salary-grade-postgres-database:
+    container_name: salary-postgres
+    build: 
+      context: "./jaeger-tracing-salary-postgres"
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=salary-grade
+
+  jaeger-tracing-java-service:
+    container_name: jaeger-tracing-java-service
+    build: 
+      context: "./jaeger-tracing-java-service"
+    environment:
+      OTEL_EXPORTER: jaeger
+      OTEL_JAEGER_ENDPOINT: jaeger-tracing:14250
+      OTEL_JAEGER_SERVICE_NAME: java-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://salary-postgres:5432/salary-grade
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      SERVER_PORT: 8090
+    ports: 
+      - "8090:8090"
+
+  jaeger-tracing-frontend-service:
+    container_name: jaeger-tracing-frontend-service
+    build: 
+      context: "./jaeger-tracing-frontend-service"
+    environment:
+      SERVER_PORT: 8080
+      NODEJS_SERVICE_URL: http://192.168.3.102:8081/
+    ports: 
+      - "8080:8080"
+
+  jaeger-tracing-nodejs-service:
+    container_name: jaeger-tracing-nodejs-service
+    build: 
+      context: "./jaeger-tracing-nodejs-service"
+    environment:
+      SERVICE_NAME: nodejs-service
+      JAEGER_AGENT_HOST: jaeger-tracing
+      JAEGER_AGENT_PORT: 6832
+      SERVER_PORT: 8081
+      JAVA_SERVICE_URL: http://jaeger-tracing-java-service:8090/
+      GO_SERVICE_URL: http://jaeger-tracing-go-service:8091/
+      PYTHON_SERVICE_URL: http://jaeger-tracing-python-service:8092/
+    ports: 
+      - "8081:8081"
+
+  jaeger-tracing-python-service:
+    container_name: jaeger-tracing-python-service
+    build: 
+      context: "./jaeger-tracing-python-service"
+    environment:
+        OTEL_JAEGER_AGENT_HOST: jaeger-tracing
+        OTEL_JAEGER_AGENT_PORT: 6831
+        OTEL_JAEGER_SERVICE_NAME: python-service
+        OTEL_PYTHON_TRACER_PROVIDER: sdk_tracer_provider
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: password
+        MYSQL_HOST: jaeger-tracing-salaryamount-mysql
+    ports: 
+      - "8092:8092"
+
+  jaeger-tracing-salaryamount-mysql:
+    container_name: jaeger-tracing-salaryamount-mysql
+    build: 
+      context: "./jaeger-tracing-salaryamount-mysql"
+    restart: always
+    environment:
+      ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: salary_amount
+    ports:
+      - "3306:3306"
+
+  jaeger-tracing:
+    image: jaegertracing/all-in-one:1.9
+    container_name: jaeger-tracing
+    ports:
+      - "5775:5775/udp"
+      - "5778:5778"
+      - "6831:6831/udp"
+      - "6832:6832/udp"
+      - "9411:9411"
+      - "14268:14268"
+      - "16686:16686"

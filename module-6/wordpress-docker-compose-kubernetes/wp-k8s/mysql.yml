@@ -11,19 +11,19 @@ spec:
     app: wordpress
     tier: mysql
   clusterIP: None
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: mysql-pv-claim
-#   labels:
-#     app: wordpress
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 20Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pv-claim
+  labels:
+    app: wordpress
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -64,7 +64,7 @@ spec:
           mountPath: /var/lib/mysql
       volumes:
       - name: mysql-persistent-storage
-        hostPath:
-          path: /tmp/mysql
-        # persistentVolumeClaim:
-        #   claimName: mysql-pv-claim
+        # hostPath:
+          # path: /tmp/mysql
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim

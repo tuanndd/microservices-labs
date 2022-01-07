@@ -7,8 +7,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "mrvantage/centos7-minikube"
-  #config.vm.box = "bento/centos-7.4"
+  config.vm.box = "bento/centos-7.4"
   config.vm.boot_timeout = 1000
 
   # Fixes changes from https://github.com/mitchellh/vagrant/pull/4707
@@ -16,12 +15,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", 4096] # ram cua may ao
-    vb.customize ["modifyvm", :id, "--cpus", 1] # cpu cua may ao
+    vb.customize ["modifyvm", :id, "--cpus", 2] # cpu cua may ao
   end
 
   config.disksize.size='50GB' # dia cung cua may ao
 
-  #config.vm.provision :shell, :path => "bootstrap.sh"
+  config.vm.provision :shell, :path => "bootstrap.sh"
 
   config.vm.define :h1 do |h1|
     h1.vm.hostname="h1.local.com" # hostname cua may ao

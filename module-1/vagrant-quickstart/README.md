@@ -12,10 +12,11 @@ https://www.vagrantup.com/downloads
 vagrant plugin install vagrant-disksize
 ```
 
-### Bước 3: Run Linux VM
+### Bước 3: Test Linux VM
+
+edit *Vagrantfile* - thay đổi CPU, memory, disk size và ip address của máy ảo. Lưu ý IP máy ảo phải thuộc range 10.0.0.0/8, 172.16.0.0/12 hoặc 192.168.0.0/16  và không trùng với range IP của mạng LAN hiện tại.  
 
 ```bash
-# edit Vagrantfile, thay đổi cấu hình của VM: CPU, memory, disk size và ip address
 # up vm
 vagrant up h1
 
@@ -26,5 +27,5 @@ vagrant ssh h1
 vagrant halt h1
 
 # delete vm
-vagrant destroy h1
+#vagrant destroy h1
 ```
