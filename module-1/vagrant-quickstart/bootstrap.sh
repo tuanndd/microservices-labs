@@ -40,4 +40,4 @@ tar zxpf etcd-v3.5.1-linux-amd64.tar.gz
 
 # change file ownership, set PATH env
 chown -R vagrant:vagrant /home/vagrant/*
-echo 'export PATH="$PATH:~/go/bin:~/protoc/bin:~/etcd-v3.5.1-linux-amd64"' >> /home/vagrant/.bashrc
+echo 'export PATH="$PATH:/home/vagrant/go/bin:/home/vagrant/protoc/bin:/home/vagrant/etcd-v3.5.1-linux-amd64"' >> /home/vagrant/.bashrc
