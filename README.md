@@ -1,11 +1,10 @@
 # Giới thiệu
-Khóa học **Building Distributed Applications with Microservices** được xây dựng nhằm mục đích giúp người học tiết kiệm thời gian tìm hiểu, xây dựng được ứng dụng phân tán nhanh chóng nhưng vẫn đảm bảo tính ***dễ mở rộng, khả năng chịu lỗi và chi phí tối ưu***.
+Khóa học **Building Distributed Applications with Microservices** sẽ giúp bạn tìm hiểu nhanh chóng về công nghệ Microservices để ứng dụng xây các ứng dụng phân tán ***dễ mở rộng, khả năng chịu lỗi và chi phí tối ưu***.
 
-Khóa học được xây dựng dựa trên series bài https://www.nginx.com/blog/introduction-to-microservices/ kèm theo các bài lab minh họa có thể tham khảo để viết ứng dụng thực tế.
+Khóa học được xây dựng dựa trên series bài https://www.nginx.com/blog/introduction-to-microservices/ kèm theo các bài lab minh họa có tính thực tiễn cao
 
 ## Điều kiện tham gia khóa học
-- Bạn có thể lập trình trên máy tính( prefer biết dùng Visual Code và cơ bản về Python, Golang)
-- Bạn biết về Linux (run commands in Terminal)
+- Bạn đã có kiến thức cơ bản về lập trình và Linux
 
 # Nội dung chi tiết
 ### Module 1: [Introduction to Microservices](module-1/Introduction-to-Microservices.pptx)
