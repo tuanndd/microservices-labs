@@ -8,6 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # All Vagrant configuration is done here. The most common configuration
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "bento/centos-7.4"
+  # config.vm.box = "ilionx/centos7"
   config.vm.boot_timeout = 1000
 
   # Fixes changes from https://github.com/mitchellh/vagrant/pull/4707
@@ -18,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--cpus", 2] # cpu cua may ao
   end
 
-  config.disksize.size='50GB' # dia cung cua may ao
+  # config.disksize.size='50GB' # dia cung cua may ao
 
   config.vm.provision :shell, :path => "bootstrap.sh"
 

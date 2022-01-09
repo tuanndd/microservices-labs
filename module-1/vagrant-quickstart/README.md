@@ -9,7 +9,9 @@ https://www.virtualbox.org/wiki/Downloads
 https://www.vagrantup.com/downloads
 
 ```bash
-vagrant plugin install vagrant-disksize
+# (optional)
+# vagrant plugin install vagrant-vbguest
+# vagrant plugin install vagrant-disksize
 ```
 
 ### Bước 3: Test Linux VM

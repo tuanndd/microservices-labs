@@ -23,20 +23,19 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 # install development tools
 sudo yum group install -y "Development Tools"
 sudo yum update -y
-sudo yum install -y wget nc unzip python3 python3-devel git java-11-openjdk-devel
+sudo yum install -y nc unzip python3 python3-devel git java-11-openjdk-devel
 
-wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
+curl -LO https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
 tar zxpf go1.17.5.linux-amd64.tar.gz
 
-wget https://github.com/protocolbuffers/protobuf/releases/download/v3.19.2/protoc-3.19.2-linux-x86_64.zip
+curl -LO https://github.com/protocolbuffers/protobuf/releases/download/v3.19.2/protoc-3.19.2-linux-x86_64.zip
 unzip protoc-3.19.2-linux-x86_64.zip -d protoc
 
 # install consul, etcd
-sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-sudo yum -y install consul
+sudo yum install -y consul
 
-wget https://github.com/etcd-io/etcd/releases/download/v3.5.1/etcd-v3.5.1-linux-amd64.tar.gz
+curl -LO https://github.com/etcd-io/etcd/releases/download/v3.5.1/etcd-v3.5.1-linux-amd64.tar.gz
 tar zxpf etcd-v3.5.1-linux-amd64.tar.gz
 
 # change file ownership, set PATH env
