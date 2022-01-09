@@ -22,6 +22,7 @@ sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
 # install development tools
 sudo yum group install -y "Development Tools"
+sudo yum update -y
 sudo yum install -y wget nc unzip python3 python3-devel git java-11-openjdk-devel
 
 wget https://go.dev/dl/go1.17.5.linux-amd64.tar.gz
