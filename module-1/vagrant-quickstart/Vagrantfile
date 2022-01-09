@@ -14,6 +14,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Fixes changes from https://github.com/mitchellh/vagrant/pull/4707
   config.ssh.insert_key = false
 
+  # Disabling the default /vagrant share
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
   config.vm.provider :virtualbox do |vb|
     vb.customize ["modifyvm", :id, "--memory", 4096] # ram cua may ao
     vb.customize ["modifyvm", :id, "--cpus", 2] # cpu cua may ao
