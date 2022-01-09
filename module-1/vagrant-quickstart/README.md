@@ -23,6 +23,9 @@ vagrant up h1
 # ssh đến vm
 vagrant ssh h1
 
+# dùng ssh-key
+ssh -i insecure_private_key vagrant@[vagrant-ip]
+
 # stop vm
 vagrant halt h1
 
