@@ -26,7 +26,7 @@ func init() {
 }
 
 func main() {
-	natsConnection, err := nats.Connect(nats.DefaultURL)
+	natsConnection, _ := nats.Connect(nats.DefaultURL)
 	log.Println("Connected to " + nats.DefaultURL)
 
 	// log.Printf("CONNECT> %v ---------- %v", natsConnection, err)

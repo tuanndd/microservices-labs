@@ -1,7 +1,7 @@
 package main
 
 import (
-	"config/config"
+	"demo/config"
 	"log"
 
 	"github.com/streadway/amqp"

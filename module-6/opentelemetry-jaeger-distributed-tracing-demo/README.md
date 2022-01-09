@@ -26,7 +26,7 @@ Thử nghiệm distributed tracing bằng opentelemetry và jaeger
 
 # build java app
 cd jaeger-tracing-java-service
-./gradlew build
+chmod +x ./gradlew && ./gradlew build
 cd ..
 
 # edit VUE frontend: thay thế "localhost" bằng vagrant-ip "172.16.1.2"
