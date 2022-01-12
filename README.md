@@ -49,6 +49,7 @@ Khóa học được xây dựng dựa trên series bài https://www.nginx.com/b
 - Lab:
   - [Opentelemetry, Jaeger distributed tracing demo](module-6/opentelemetry-jaeger-distributed-tracing-demo/)
   - [Deploy wordpress bằng docker-compose và kubernetes](module-6/wordpress-docker-compose-kubernetes/)
+  - [Giảm kích thước của docker-image nginx](module-6/optimize-ngnix-docker-image/README.md)
   
 ### Module 7: [Refactoring a Monolith into Microservices](module-7/Refactoring-a-Monolith-into-Microservices.pptx)
 - Tìm hiểu các chiến lược để migrate monolith sang microservices: ***Stop Digging, Split Frontend and Backend, Extract Services***

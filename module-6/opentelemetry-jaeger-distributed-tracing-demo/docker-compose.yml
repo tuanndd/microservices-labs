@@ -21,7 +21,7 @@ services:
         MONGODB_URI: mongodb://admin:admin@employee-mongo:27017/admin
         DATABASE_NAME: employees
         OTEL_EXPORTER: jaeger
-        OTEL_JAEGER_ENDPOINT: http://jaeger-tracing:14268
+        OTEL_JAEGER_ENDPOINT: http://jaeger-tracing:14268 # http collector, accept jaeger.thrift
         OTEL_JAEGER_SERVICE_NAME: go-service
     ports: 
       - "8091:8091"
@@ -44,7 +44,7 @@ services:
       context: "./jaeger-tracing-java-service"
     environment:
       OTEL_EXPORTER: jaeger
-      OTEL_JAEGER_ENDPOINT: jaeger-tracing:14250
+      OTEL_JAEGER_ENDPOINT: jaeger-tracing:14250 # http collector, accept model.proto
       OTEL_JAEGER_SERVICE_NAME: java-service
       SPRING_DATASOURCE_URL: jdbc:postgresql://salary-postgres:5432/salary-grade
       SPRING_DATASOURCE_USERNAME: postgres
@@ -70,7 +70,7 @@ services:
     environment:
       SERVICE_NAME: nodejs-service
       JAEGER_AGENT_HOST: jaeger-tracing
-      JAEGER_AGENT_PORT: 6832
+      JAEGER_AGENT_PORT: 6832 # udp agent, accept jaeger.thrift
       SERVER_PORT: 8081
       JAVA_SERVICE_URL: http://jaeger-tracing-java-service:8090/
       GO_SERVICE_URL: http://jaeger-tracing-go-service:8091/
@@ -84,7 +84,7 @@ services:
       context: "./jaeger-tracing-python-service"
     environment:
         OTEL_JAEGER_AGENT_HOST: jaeger-tracing
-        OTEL_JAEGER_AGENT_PORT: 6831
+        OTEL_JAEGER_AGENT_PORT: 6831 # udp agent, accept jaeger.thrift
         OTEL_JAEGER_SERVICE_NAME: python-service
         OTEL_PYTHON_TRACER_PROVIDER: sdk_tracer_provider
         MYSQL_USER: admin
