@@ -3,6 +3,8 @@ Khóa học **Building Distributed Applications with Microservices** sẽ giúp 
 
 Khóa học được xây dựng dựa trên series bài https://www.nginx.com/blog/introduction-to-microservices/ kèm theo các bài lab minh họa có tính thực tiễn cao
 
+### Video link: https://youtube.com/playlist?list=PLBZOcUAzlak_bNUfT7Q8P4sNsLtULDash
+
 ## Điều kiện tham gia khóa học
 - Bạn đã có kiến thức cơ bản về lập trình và Linux
 
@@ -57,4 +59,4 @@ Khóa học được xây dựng dựa trên series bài https://www.nginx.com/b
 # Các vấn đề khác
 - Khóa học có sử dụng tài liệu và source code của nhiều người, tất cả đều được ghi nhận trong các file README.md
 - Bạn được phép sử dụng miễn phí tất cả các tài liệu của khóa học này. 
-- Mọi thắc mắc vui lòng liên hệ tôi qua email tuanndd@gmail.com
+- Mọi thắc mắc vui lòng liên hệ với chúng tôi qua email tuanndd@gmail.com hoặc cuonglv1994@gmail.com
