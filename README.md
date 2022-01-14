@@ -59,4 +59,4 @@ Khóa học được xây dựng dựa trên series bài https://www.nginx.com/b
 # Các vấn đề khác
 - Khóa học có sử dụng tài liệu và source code của nhiều người, tất cả đều được ghi nhận trong các file README.md
 - Bạn được phép sử dụng miễn phí tất cả các tài liệu của khóa học này. 
-- Mọi thắc mắc vui lòng liên hệ với chúng tôi qua email tuanndd@gmail.com hoặc cuonglv1994@gmail.com
+- Mọi thắc mắc vui lòng liên hệ với chúng tôi qua email tuanndd@gmail.com hoặc cuonglv.it@protonmail.com
